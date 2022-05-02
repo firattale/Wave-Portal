@@ -1,4 +1,4 @@
-# Basic Sample Hardhat Project
+# Wave Project
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
@@ -13,3 +13,7 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+FE Project: https://replit.com/@firattale/waveportal-starter-project#src/App.jsx
+
+FE Link: https://waveportal-starter-project.firattale.repl.co/
