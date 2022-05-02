@@ -1,7 +1,6 @@
 const main = async () => {
 	// This will actually compile our contract and generate the necessary files we need to work with our contract under the artifacts directory.
 	//  The Hardhat Runtime Environment, or HRE for short, is an object containing all the functionality that Hardhat exposes when running a task, test or script. In reality, Hardhat is the HRE.
-	const [owner, randomPerson] = await hre.ethers.getSigners();
 	const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
 
 	// Hardhat will create a local Ethereum network for us, but just for this contract. Then, after the script completes it'll destroy that local network
@@ -22,10 +21,13 @@ const main = async () => {
 	console.log("Total Waves: ", waveCount.toString());
 
 	/*
-	 * Let's send a few waves!
+	 * Let's try two waves now
 	 */
-	let waveTxn = await waveContract.wave("A message!");
-	await waveTxn.wait(); // Wait for the transaction to be mined
+	const waveTxn = await waveContract.wave("This is wave #1");
+	await waveTxn.wait();
+
+	const waveTxn2 = await waveContract.wave("This is wave #2");
+	await waveTxn2.wait();
 
 	/*
 	 * Get Contract balance to see what happened!
