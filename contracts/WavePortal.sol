@@ -14,8 +14,8 @@ contract WavePortal {
 	}
 	Wave[] waves;
 
-	constructor() {
-		console.log("I AM SMART CONTRACT. POG.");
+	constructor() payable {
+		console.log("We have been constructed!");
 	}
 
 	function wave(string memory _message) public {
@@ -23,6 +23,11 @@ contract WavePortal {
 		console.log("%s waved w/ message %s", msg.sender, _message);
 		waves.push(Wave(msg.sender, block.timestamp, _message));
 		emit NewWave(msg.sender, block.timestamp, _message);
+
+		uint256 prizeAmount = 0.0001 ether;
+		require(prizeAmount <= address(this).balance, "Not enough funds to pay for prize.");
+		(bool success, ) = msg.sender.call{ value: prizeAmount }("");
+		require(success, "Failed to send prize.");
 	}
 
 	function getAllWaves() public view returns (Wave[] memory) {
